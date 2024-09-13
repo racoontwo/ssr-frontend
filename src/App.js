@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 // import React, { useState, useEffect } from 'react';
-import MuminComponent from './components/MuminComponent.js';
-import AddMumin from './components/AddMumin.js';
+import ShowDocs from './components/ShowDocs.js';
+import AddDocs from './components/AddDocs.js';
 
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
           Learn React
         </a>
 
-        <MuminComponent />
-        <AddMumin />
+        <ShowDocs />
+        <AddDocs />
       </header>
     </div>
   );
