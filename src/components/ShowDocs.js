@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ShowOne from './ShowOne.js';
 
 export default function ShowDocs() {
     const [data, setData] = useState([]);
@@ -34,12 +35,26 @@ export default function ShowDocs() {
         return <div>Error: {error}</div>;
     }
 
+    const handleClick = (item) => {
+        console.log("Clicked item with ID:", item);
+        return (
+            <div>
+            <h1>Ett dokument</h1>
+            <ShowOne item={item} />
+            </div>
+        );
+    };
+
     return (
         <div>
         <h1>Sparade dokument</h1>
         <ul>
             {data.data.map((item, index) => (
-            <li key={index}>{item.title} - {item.content}</li>
+            <li key={index}>
+                <a href="#" onClick={() => handleClick(item)}>
+                {item.title} - {item.content} - {item._id}
+                </a>
+            </li>
             ))}
         </ul>
         </div>
