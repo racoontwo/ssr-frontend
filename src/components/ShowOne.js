@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-
-export default function ShowDocs(id) {
-
+export default function ShowOne({ item }) {
+    if (!item) {
+        return <div>No value</div>;
+    }
     return (
         <div>
-        {/* <h1>{body.title}</h1> */}
-        {/* <h1>{body.component}</h1> */}
-        <h1>{id}</h1>
+            <h2>Details for {item.title}</h2>
+            <p>Content: {item.content}</p>
+            <p>ID: {item._id}</p>
         </div>
     );
 }

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import ShowOne from './ShowOne.js';
 
-export default function ShowDocs() {
+export default function ShowDocs({ setPage, setSelectedItem }) {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const changeParentState = (item) => {
+        setSelectedItem(item);
+        setPage('showone');
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -36,27 +39,21 @@ export default function ShowDocs() {
     }
 
     const handleClick = (item) => {
-        console.log("Clicked item with ID:", item);
-        return (
-            <div>
-            <h1>Ett dokument</h1>
-            <ShowOne item={item} />
-            </div>
-        );
+        changeParentState(item);
     };
 
     return (
-        <div>
+    <div className="DocumentList">
         <h1>Sparade dokument</h1>
         <ul>
-            {data.data.map((item, index) => (
+        {data.data.map((item, index) => (
             <li key={index}>
-                <a href="#" onClick={() => handleClick(item)}>
-                {item.title} - {item.content} - {item._id}
-                </a>
+            <a onClick={() => handleClick(item)}>
+                {item.title}
+            </a>
             </li>
-            ))}
+        ))}
         </ul>
-        </div>
+    </div>
     );
 }
