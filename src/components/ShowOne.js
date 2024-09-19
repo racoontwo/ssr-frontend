@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function ShowOne({ item }) {
-
-
     const [formData, setFormData] = useState({
         _id: item._id,
         title: item.title,
@@ -18,13 +16,6 @@ export default function ShowOne({ item }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
-
-        console.log("Hej, inne i HandleSubmit SHOWONE");
-        console.log(formData);
-
-        console.log(formData.title);
-        console.log(formData.content);
-
         try {
             const response = await fetch("http://localhost:3001/update_docs", {
                 method: "POST",
