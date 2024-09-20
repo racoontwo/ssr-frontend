@@ -17,7 +17,7 @@ export default function ShowOne({ item }) {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
-            const response = await fetch("http://localhost:3001/update_docs", {
+            const response = await fetch("http://localhost:3001/posts/update_docs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
