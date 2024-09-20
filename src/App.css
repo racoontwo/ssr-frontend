@@ -28,6 +28,61 @@
   color: #61dafb;
 }
 
+/* below is not default from react app*/
+
+/* Adjusting the container to align with the App styles */
+.DocumentList {
+  text-align: center;
+  margin: 20px auto;
+  color: white;
+}
+
+/* Styling the heading to fit the existing App-header color scheme */
+.DocumentList h1 {
+  color: #61dafb;
+  font-size: calc(12px + 2vmin);
+  margin-bottom: 20px;
+}
+
+/* Styling the unordered list */
+.DocumentList ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling each list item */
+.DocumentList li {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover effect for list items */
+.DocumentList li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+/* Styling the links inside the list */
+.DocumentList a {
+  text-decoration: none;
+  color: #61dafb;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for links */
+.DocumentList a:hover {
+  color: #21a1f1;
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
