@@ -12,19 +12,24 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
 
     useEffect(() => {
         async function fetchData() {
-        try {
-            // const response = await fetch('http://localhost:3001/posts/json');
-            const response = await fetch('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/json');
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
+            try {
+                // const response = await fetch('http://localhost:3001/posts/json');
+                const response = await fetch(
+                    'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
+                    +'northeurope-01.azurewebsites.net/posts/json',
+                );
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.json();
+
+                setData(result);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
-            const result = await response.json();
-            setData(result);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
         }
 
         fetchData();
@@ -43,17 +48,15 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
     };
 
     return (
-    <div className="DocumentList">
-        <h1>Sparade dokument</h1>
-        <ul>
-        {data.data.map((item, index) => (
-            <li key={index}>
-            <a onClick={() => handleClick(item)}>
-                {item.title}
-            </a>
-            </li>
-        ))}
-        </ul>
-    </div>
+        <div className="DocumentList">
+            <h1>Sparade dokument</h1>
+            <ul>
+                {data.data.map((item, index) => (
+                    <li key={index}>
+                        <a onClick={() => handleClick(item)}>{item.title}</a>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
