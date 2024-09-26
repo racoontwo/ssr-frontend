@@ -22,7 +22,7 @@ export default function AddDocs() {
         console.log(formData.content);
 
         try {
-            const response = await fetch("http://localhost:3001/posts/add_docs", {
+            const response = await fetch("http://localhost:1337/posts/add_docs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
