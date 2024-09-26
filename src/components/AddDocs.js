@@ -22,7 +22,8 @@ export default function AddDocs() {
         console.log(formData.content);
 
         try {
-            const response = await fetch("http://localhost:3001/posts/add_docs", {
+            // const response = await fetch("http://localhost:3001/posts/add_docs", {
+            const response = await fetch("https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/add_docs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
