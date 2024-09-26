@@ -13,7 +13,9 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
     useEffect(() => {
         async function fetchData() {
         try {
-            const response = await fetch('http://localhost:3001/posts/json');
+            // const response = await fetch('http://localhost:1337/posts/json');
+            // const response = await fetch('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/json');
+            const response = await fetch('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/json');
             // const response = await fetch('https://trafik.emilfolino.se/stations');
             if (!response.ok) {
             throw new Error('Network response was not ok');
