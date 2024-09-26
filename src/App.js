@@ -23,6 +23,8 @@ function App() {
         <button onClick={() => setPage('addocs')}>Add Docs</button>
         <button onClick={() => setPage('showone')}>Show One Doc</button>
       </nav>
+
+      <p>Hello</p>
       
       <section>
         {/* Conditionally render content based on the value of the "page" state */}
