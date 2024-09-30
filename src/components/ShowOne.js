@@ -42,26 +42,24 @@ export default function ShowOne({ item }) {
     }
 
     return (
-        <div>
+        <div class="singleDocument">
             <form onSubmit={handleSubmit}>
-                <label>
-                    Title:
+                <div>
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
                     />
-                </label>
-                <label>
-                    Content:
-                    <input
+                </div>
+                <div>
+                    <textarea
                         type="text"
                         name="content"
                         value={formData.content}
-                        onChange={handleChange}
-                    />
-                </label>
+                        onChange={handleChange}>
+                    </textarea>
+                </div>
                 <button type="submit">Update</button>
             </form>
         </div>
