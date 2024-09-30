@@ -23,7 +23,7 @@ function App() {
                     <button onClick={() => setPage('home')}>Home</button>
                     <button onClick={() => setPage('addocs')}>New document</button>
                     <button onClick={() => setPage('all')}>Saved documents</button>
-                    <button onClick={() => setPage('showone')}>Show One Doc</button>
+                    {/* <button onClick={() => setPage('showone')}>Show One Doc</button> */}
                 </nav>
             </header>
             <div class="main">
