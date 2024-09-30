@@ -1,5 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import './css/style.css';
 import React, { useState } from 'react';
 
 import ShowDocs from './components/ShowDocs.js';
@@ -14,16 +15,18 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <a href="/~olrs23/editor/">
+                    <h1>SSR Editor</h1>
+                </a>
                 <nav>
                     {/* Set buttons to update the "page" state */}
                     <button onClick={() => setPage('home')}>Home</button>
-                    <button onClick={() => setPage('all')}>All</button>
-                    <button onClick={() => setPage('addocs')}>Add Docs</button>
+                    <button onClick={() => setPage('addocs')}>New document</button>
+                    <button onClick={() => setPage('all')}>Saved documents</button>
                     <button onClick={() => setPage('showone')}>Show One Doc</button>
                 </nav>
-
-                <p>Hello</p>
-
+            </header>
+            <div class="main">
                 <section>
                     {/* Conditionally render content based on the value of the "page" state */}
                     {page === 'home' && <Home />}
@@ -33,9 +36,11 @@ function App() {
                     {page === 'addocs' && <AddDocs />}
                     {page === 'showone' && <ShowOne item={selectedItem} />}
                 </section>
-
-                <img src={logo} className="App-logo" alt="logo" />
-            </header>
+                {/* <img src={logo} className="App-logo" alt="logo" /> */}
+            </div>
+            <footer>
+                <p class="copyright">&copy; Oliver Roosvall & Pontus Karlsson</p>
+            </footer>
         </div>
     );
 }
