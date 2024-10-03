@@ -1,16 +1,46 @@
 // import logo from './logo.svg';
 // import './App.css';
 import './css/style.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ShowDocs from './components/ShowDocs.js';
 import ShowOne from './components/ShowOne.js';
 import AddDocs from './components/AddDocs.js';
 import Home from './components/Home.js';
 
+//possible own component
+import io from "socket.io-client";
+
+let socket;
+//socket above
+
 function App() {
     const [page, setPage] = useState('home');
     const [selectedItem, setSelectedItem] = useState(null);
+
+    useEffect(() => {
+        // Initialize the socket connection
+        socket = io("http://localhost:1337"); // Replace with your actual server URL
+
+        // Perform actions on connection, e.g., logging when connected
+        socket.on('connect', () => {
+            console.log('Connected to server via Socket.IO');
+        });
+
+        let message = "helo from frontend";
+
+        socket.emit("message", message);
+
+        // Optional: Handle disconnection
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+
+        // Cleanup function to disconnect on component unmount
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
 
     return (
         <div className="App">
