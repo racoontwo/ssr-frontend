@@ -17,30 +17,29 @@ let socket;
 function App() {
     const [page, setPage] = useState('home');
     const [selectedItem, setSelectedItem] = useState(null);
+    //useState = Shared? (lägga till en knapp i DOM där man klickar "Shared"
+    //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
+    //mot socket och gör att man kan skriva samtidigt)
 
     useEffect(() => {
-        // Initialize the socket connection
-        socket = io("http://localhost:1337"); // Replace with your actual server URL
+        socket = io("http://localhost:1337");
 
-        // Perform actions on connection, e.g., logging when connected
         socket.on('connect', () => {
-            console.log('Connected to server via Socket.IO');
+            console.log(`You connected with id: ${socket.id}`);
+            if (selectedItem) {
+                socket.emit("selectedItem", selectedItem);
+                socket.emit("create", selectedItem["_id"]);
+            }
         });
 
-        let message = "helo from frontend";
-
-        socket.emit("message", message);
-
-        // Optional: Handle disconnection
         socket.on('disconnect', () => {
             console.log('Disconnected from server');
         });
 
-        // Cleanup function to disconnect on component unmount
         return () => {
             socket.disconnect();
         };
-    }, []);
+    }, [selectedItem]);
 
     return (
         <div className="App">
