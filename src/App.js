@@ -32,6 +32,13 @@ function App() {
             }
         });
 
+        socket.on("doc", (data) => {
+            setSelectedItem(data.content, false);
+            if (selectedItem) {
+                socket.emit("doc", data);
+            }
+        });
+
         socket.on('disconnect', () => {
             console.log('Disconnected from server');
         });

@@ -1,0 +1,22 @@
+- Installerat socket - socket kör på app-server istället för http-server som vi försökte med från början.
+- La till toastify för att få en flash när dokumentet är uppdaterat.
+
+
+Skillnad på useState och useEffect:
+
+useState- Manage state in functional components.
+Till exempel count, set count.
+https://www.youtube.com/watch?v=V9i3cGD-mts&ab_channel=CosdenSolutions
+
+useEffect- Is to handle side efffects in functional components, such as data fetching, subscriptions, or manually updating DOM.
+https://www.youtube.com/watch?v=-4XpG5_Lj_o&ab_channel=CosdenSolutions
+
+
+Bra tutorial för att komma igång med sockets:
+https://www.youtube.com/watch?v=ZKEqqIO7n-k&ab_channel=WebDevSimplified
+
+
+- Efter brief med Pontus kan vi ta bort allt det kommenterade i app.mjs
+- Vad kan göras framöver?
+- Vi kanske behöver se över npm audit... som i början av projektet.
+- Kom ihåg, ibland kan man behöva starta om "npm start" på backend för att implementera ändringar.

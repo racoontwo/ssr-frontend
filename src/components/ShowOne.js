@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ShowOne({ item }) {
     const [formData, setFormData] = useState({
@@ -31,6 +33,8 @@ export default function ShowOne({ item }) {
             );
             const data = await response.json();
 
+            toast.success('Document updated successfully!');
+
             console.log('Response from backend:', data);
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -61,6 +65,7 @@ export default function ShowOne({ item }) {
                     </textarea>
                 </div>
                 <button type="submit">Update</button>
+                <ToastContainer />
             </form>
         </div>
     );
