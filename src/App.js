@@ -24,7 +24,9 @@ function App() {
     //If socket is not defined, establish a websocket connection to the server
     useEffect(() => {
         if (!socket) {
-            socket = io("http://localhost:1337");
+            // socket = io("http://localhost:1337")
+            socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                +'azurewebsites.net');
 
             socket.on('connect', () => {
                 console.log(`You connected with id: ${socket.id}`);
