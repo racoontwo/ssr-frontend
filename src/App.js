@@ -1,16 +1,67 @@
 // import logo from './logo.svg';
 // import './App.css';
 import './css/style.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ShowDocs from './components/ShowDocs.js';
 import ShowOne from './components/ShowOne.js';
 import AddDocs from './components/AddDocs.js';
 import Home from './components/Home.js';
 
+//possible own component
+import io from "socket.io-client";
+
+let socket;
+//socket above
+
 function App() {
     const [page, setPage] = useState('home');
     const [selectedItem, setSelectedItem] = useState(null);
+    //useState = Shared? (lägga till en knapp i DOM där man klickar "Shared"
+    //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
+    //mot socket och gör att man kan skriva samtidigt)
+
+    //If socket is not defined, establish a websocket connection to the server
+    useEffect(() => {
+        if (!socket) {
+            // socket = io("http://localhost:1337")
+            socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                +'azurewebsites.net');
+
+            socket.on('connect', () => {
+                console.log(`You connected with id: ${socket.id}`);
+                // if (selectedItem) {
+                //     socket.emit("selectedItem", selectedItem);
+                //     socket.emit("create", selectedItem["_id"]);
+                // }
+            });
+
+            //If a document is being edited, update selectedItem with the edits.
+            socket.on("doc", (data) => {
+                // setSelectedItem(data.content, false);
+                if (selectedItem && data._id === selectedItem._id) {
+                    selectedItem(data);
+                    // socket.emit("doc", data);
+                }
+            });
+
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server');
+            });
+
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }, []);
+
+    //Triggers on changes in SelectedItem
+    useEffect(() => {
+        if (selectedItem) {
+            //emit the documents data to the server and join the room.
+            socket.emit("selectedItem", selectedItem);
+        }
+    }, [selectedItem]);
 
     return (
         <div className="App">
