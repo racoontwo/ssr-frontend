@@ -1,21 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import io from "socket.io-client";
+
+let socket;
 
 export default function ShowOne({ item }) {
+    //manage the data in the document
     const [formData, setFormData] = useState({
         _id: item._id,
         title: item.title,
         content: item.content,
     });
 
+    //Initialize a websocket connection to the server
+    useEffect(() => {
+        socket = io("http://localhost:1337");
+
+        // Join the room using the document's _id
+        socket.emit('selectedItem', { _id: item._id });
+
+        // Listen for real-time updates of the document from all clients in the room
+        socket.on('doc', (data) => {
+            if (data._id === item._id) {
+                setFormData(data);
+            }
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, [item._id]);
+
+    //Handles any change of the the title or content for all connected clients.
     const handleChange = (e) => {
-        setFormData({
+        const updatedData = {
             ...formData,
             [e.target.name]: e.target.value,
-        });
+        };
+
+        setFormData(updatedData);
+        socket.emit('doc', updatedData);
     };
 
+    // const handleChange = (e) => {
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
+
+    //Handle any submits and sends the data to the server for further handling.
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

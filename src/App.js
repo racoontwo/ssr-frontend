@@ -21,31 +21,44 @@ function App() {
     //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
     //mot socket och gör att man kan skriva samtidigt)
 
+    //If socket is not defined, establish a websocket connection to the server
     useEffect(() => {
-        socket = io("http://localhost:1337");
+        if (!socket) {
+            socket = io("http://localhost:1337");
 
-        socket.on('connect', () => {
-            console.log(`You connected with id: ${socket.id}`);
-            if (selectedItem) {
-                socket.emit("selectedItem", selectedItem);
-                socket.emit("create", selectedItem["_id"]);
-            }
-        });
+            socket.on('connect', () => {
+                console.log(`You connected with id: ${socket.id}`);
+                // if (selectedItem) {
+                //     socket.emit("selectedItem", selectedItem);
+                //     socket.emit("create", selectedItem["_id"]);
+                // }
+            });
 
-        socket.on("doc", (data) => {
-            setSelectedItem(data.content, false);
-            if (selectedItem) {
-                socket.emit("doc", data);
-            }
-        });
+            //If a document is being edited, update selectedItem with the edits.
+            socket.on("doc", (data) => {
+                // setSelectedItem(data.content, false);
+                if (selectedItem && data._id === selectedItem._id) {
+                    selectedItem(data);
+                    // socket.emit("doc", data);
+                }
+            });
 
-        socket.on('disconnect', () => {
-            console.log('Disconnected from server');
-        });
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server');
+            });
 
-        return () => {
-            socket.disconnect();
-        };
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }, []);
+
+    //Triggers on changes in SelectedItem
+    useEffect(() => {
+        if (selectedItem) {
+            //emit the documents data to the server and join the room.
+            socket.emit("selectedItem", selectedItem);
+        }
     }, [selectedItem]);
 
     return (
