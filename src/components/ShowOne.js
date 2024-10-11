@@ -15,8 +15,9 @@ export default function ShowOne({ item }) {
 
     //Initialize a websocket connection to the server
     useEffect(() => {
-        socket = io("http://localhost:1337");
-
+        // socket = io("http://localhost:1337");
+        socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                +'azurewebsites.net');
         // Join the room using the document's _id
         socket.emit('selectedItem', { _id: item._id });
 
