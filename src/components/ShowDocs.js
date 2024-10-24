@@ -13,16 +13,36 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
     useEffect(() => {
         async function fetchData() {
             try {
-                // const response = await fetch('http://localhost:3001/posts/json');
+                // const response = await fetch(
+                //     'http://localhost:1337/graphql',
+                //     {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //         },
+                //         body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
+                //     },);
+                
                 const response = await fetch(
                     'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
-                    +'northeurope-01.azurewebsites.net/posts/json',
-                );
+                    +'northeurope-01.azurewebsites.net/graphql',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
+                    },);
+                // const response = await fetch(
+                //     'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
+                //     +'northeurope-01.azurewebsites.net/posts/json',
+                // );
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const result = await response.json();
+                console.log(result);
 
                 setData(result);
             } catch (error) {
@@ -51,7 +71,7 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
         <div className="DocumentList">
             <h1>Sparade dokument</h1>
             <ul>
-                {data.data.map((item, index) => (
+                {data.data.documents.map((item, index) => (
                     <li key={index}>
                         <a onClick={() => handleClick(item)}>{item.title}</a>
                     </li>
