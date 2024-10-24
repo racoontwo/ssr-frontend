@@ -22,7 +22,6 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
                 //         },
                 //         body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
                 //     },);
-                
                 const response = await fetch(
                     'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
                     +'northeurope-01.azurewebsites.net/graphql',
@@ -30,8 +29,8 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
+                        },
+                        body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
                     },);
                 // const response = await fetch(
                 //     'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
@@ -42,7 +41,6 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
                     throw new Error('Network response was not ok');
                 }
                 const result = await response.json();
-                console.log(result);
 
                 setData(result);
             } catch (error) {
