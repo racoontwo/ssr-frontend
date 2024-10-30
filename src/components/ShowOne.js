@@ -77,6 +77,45 @@ export default function ShowOne({ item }) {
         }
     };
 
+    const handleDelete = async () => {
+        if (window.confirm("Are you sure you want to delete this document?")) {
+            try {
+                const response = await fetch(
+                    'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/delete-one-doc',
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData), // Send the document ID
+                    }
+                );
+
+                // const response = await fetch(
+                //     'http://localhost:1337/posts/delete-one-doc',
+                //     {
+                //         method: 'DELETE',
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //         },
+                //         body: JSON.stringify(formData), // Send the document ID
+                //     }
+                // );
+
+                if (response.ok) {
+                    toast.success('Document deleted successfully!');
+                    // Optionally, you might want to reset formData or redirect the user
+                } else {
+                    const data = await response.json();
+                    toast.error(`Error: ${data.error}`);
+                }
+            } catch (error) {
+                console.error('Error deleting document:', error);
+                toast.error('Failed to delete document.');
+            }
+        }
+    };
+
     if (!item) {
         return <div>No value</div>;
     }
@@ -101,6 +140,7 @@ export default function ShowOne({ item }) {
                     </textarea>
                 </div>
                 <button type="submit">Update</button>
+                <button type="button" onClick={handleDelete}>Delete Document</button>
                 <ToastContainer />
             </form>
         </div>
