@@ -7,6 +7,7 @@ import ShowDocs from './components/ShowDocs.js';
 import ShowOne from './components/ShowOne.js';
 import AddDocs from './components/AddDocs.js';
 import Home from './components/Home.js';
+import deleteDatabase from './components/DeleteDb.js';
 
 //possible own component
 import io from "socket.io-client";
@@ -90,6 +91,7 @@ function App() {
                 {/* <img src={logo} className="App-logo" alt="logo" /> */}
             </div>
             <footer>
+                <a onClick={deleteDatabase}>Radera databasen</a>
                 <p class="copyright">&copy; Oliver Roosvall & Pontus Karlsson</p>
             </footer>
         </div>
