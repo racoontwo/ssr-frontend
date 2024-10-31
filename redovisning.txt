@@ -5,28 +5,28 @@ Krav vi har gjort:
 
 Socket:
 
-Vi valde att göra sockets och försöka oss på att två skulle redigera samtidigt. Vi började med att få backend
-och frontend att prata med varandra genom att skapa emit och servers på vardera. När vi väl hade etablerat en kommunikation
-mellan de bägge, och kunde skicka "meddelanden" till respektive, så fokuserade vi på att skapa strukturen för 
-att få med the dokumentdata från databasen och skicka med i socket.
+Vi valde att implementera sockets för att försöka få till så att flera parter skulle kunna redigera i ett dokument samtidigt. 
+Vi började med att få backend och frontend att prata med varandra genom att skapa emit och servers på vardera. När vi väl hade etablerat en kommunikation
+mellan klient och server, och kunde skicka "meddelanden" till respektive, så fokuserade vi på att skapa strukturen för att få med dokumentdata från databasen och skicka via socket.
 Några problem vi stötte på under vägen var få socket att kommunicera mellan backend och frontend samt vilken server
-vi ville att den skulle fungera på. Till en börja följde vi beskrivningen och instruktionen där http-server användes,
-men efter att ha testat det utan framgång så valde vi att köra 
-socket på app-server istället för http-server, vilket fungerade bättre. Det var en av de stora trösklarna
+vi ville att det skulle fungera på. Till en börja följde vi beskrivningen och instruktionen där http-server användes,
+men efter att ha testat det utan framgång så löste vi det genom att använda socket på app-server istället för http-server, vilket fungerade bättre. Det var en av de stora trösklarna
 vi behövde ta oss över för att få det hela att snurra. När väl den biten var på plats så var det rätt straight forward
-att få sakerna att kommunicera. Den var den andra tröskeln att få in så att bägge kunde skriva samtidigt, vilket
-Pontus fixade galant.
+att få sakerna att kommunicera. Den andra större tröskeln var att få till det med rooms och broadcasting så att vi bägge redigera och se uppdateringarna simultant.
+Vi löste detta tillslut genom skapa ett rum baserat på dokumentets id som man direkt anslöts till när man klickade sig in på ett dokument. Sedan
+använde vi oss utav ett use state och en handle-funktion för att i realtid lyssna på förändringar i dokumentet som broadcastas till alla som är anslutna till rummet.
 
 GraphQL: 
 
-I detta moment så följde vi instruktionerna som var tillgängliga från repo-sidan. Vi bytte ut de väsentliga
-delarna mot våra egna objekt och byggde upp GraphQL-strukturen utan att implementera funktionaliteten.
+I detta moment så följde vi instruktionerna som var tillgängliga från repo-sidan, vilket fungerade väldigt smidigt med en gång.
+Vi anpassade koden efter vår databas uppbyggnad och byggde upp GraphQL-strukturen utan att implementera funktionaliteten.
 När väl bitarna var på plats och vi kände oss nöjda med hur vår struktur speglade instruktionerna så testade vi
 att skapa en GraphQL-route och ansluta till den. Till en början så kom vi inte åt routen
-i webbläsaren men det löste vi snabbt. Vi spenderade lite tid med att lösa dependencies i package.json men
-även det var relativt enkelt att justera. 
+i webbläsaren men det löste sig relativt snart. Till vår stora förvåning fungerade queryn som tänkt med en gång, vilket kändes ovant då
+man allt som oftast gjort något lite fel eller missat något. Därefter spenderade vi lite tid med att lösa dependencies i package.json men
+även det var relativt enkelt att justera. Det sista vi gjorde var att anpassa vår komponent i frontend som hämtar all data från databasen till
+att den skulle hämta data från routen graphql istället för det RESTapi vi tidigare använt.
 
-Pontus fixade slutdelen galant.
 
 Tester:
 
@@ -35,7 +35,10 @@ eller i frontend. Efter en snabb överläggning så kom vi fram till att backend
 men nu i efterhand så hade det också varit värt att ha en större testdel i frontend, då framför allt för
 socket. 
 
-Testet för GraphQL - Pontus berättar.
+När det kom till att bygga tester för graphql så fokuserades det på hur olika querys hanterades, dels att enbart den data som efterfrågades blev
+returnerade men även hur fel i querys hanterades. Det blev totalt 5 tester, varav 2 fokuserades på att hämta rätt data och 3 på att hantera fel.
+Det som testades var bland annat att all data gick att från ut, men även enskilda subfält med en kontroll att det enbart var dessa som returnerades.
+För felhantering så testades vad som händer i de fall inget subfält anges, ett tom subfält anges samt att ett felstavar subfält anges.
 
 Testet för Socket blev fokuserat på att se till att anslutningen fungerade i backend och att 
 rätt information blev skickad, samt att det gick att ansluta till respektive rum.
