@@ -16,7 +16,7 @@ let socket;
 //socket above
 
 function App() {
-    const [page, setPage] = useState('home');
+    const [page, setPage] = useState('all');
     const [selectedItem, setSelectedItem] = useState(null);
     //useState = Shared? (lägga till en knapp i DOM där man klickar "Shared"
     //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
@@ -72,7 +72,7 @@ function App() {
                 </a>
                 <nav>
                     {/* Set buttons to update the "page" state */}
-                    <button onClick={() => setPage('home')}>Home</button>
+                    {/* <button onClick={() => setPage('home')}>Home</button> */}
                     <button onClick={() => setPage('addocs')}>New document</button>
                     <button onClick={() => setPage('all')}>Saved documents</button>
                     {/* <button onClick={() => setPage('showone')}>Show One Doc</button> */}

@@ -4,11 +4,11 @@ import App from './App.js';
 import ShowDocs from './components/ShowDocs';
 // import ShowOne from './components/ShowOne';
 
-test('renders learn react link', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/Home page/i);
-    expect(linkElement).toBeInTheDocument();
-});
+// test('renders learn react link', () => {
+//     render(<App />);
+//     const linkElement = screen.getByText(/Home page/i);
+//     expect(linkElement).toBeInTheDocument();
+// });
 
 // describe('ShowDocs Component', () => {
 //     const setPageMock = jest.fn();
