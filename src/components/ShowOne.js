@@ -81,7 +81,8 @@ export default function ShowOne({ item }) {
         if (window.confirm("Are you sure you want to delete this document?")) {
             try {
                 const response = await fetch(
-                    'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.azurewebsites.net/posts/delete-one-doc',
+                    'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                    +'azurewebsites.net/posts/delete-one-doc',
                     {
                         method: 'DELETE',
                         headers: {
@@ -107,6 +108,7 @@ export default function ShowOne({ item }) {
                     // Optionally, you might want to reset formData or redirect the user
                 } else {
                     const data = await response.json();
+
                     toast.error(`Error: ${data.error}`);
                 }
             } catch (error) {
@@ -139,8 +141,8 @@ export default function ShowOne({ item }) {
                         onChange={handleChange}>
                     </textarea>
                 </div>
-                <button type="submit">Update</button>
-                <button type="button" onClick={handleDelete}>Delete Document</button>
+                <button type="submit">Save document</button>
+                <button type="button" onClick={handleDelete}>Delete document</button>
                 <ToastContainer />
             </form>
         </div>
