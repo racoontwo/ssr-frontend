@@ -1,0 +1,46 @@
+Vilka krav ni har gjort och hur ni har implementerat kraven:
+Beskriv de val ni har gjort och vilka problem som uppstod på vägen:
+
+Krav vi har gjort: 
+
+Socket:
+
+Vi valde att göra sockets och försöka oss på att två skulle redigera samtidigt. Vi började med att få backend
+och frontend att prata med varandra genom att skapa emit och servers på vardera. När vi väl hade etablerat en kommunikation
+mellan de bägge, och kunde skicka "meddelanden" till respektive, så fokuserade vi på att skapa strukturen för 
+att få med the dokumentdata från databasen och skicka med i socket.
+Några problem vi stötte på under vägen var få socket att kommunicera mellan backend och frontend samt vilken server
+vi ville att den skulle fungera på. Till en börja följde vi beskrivningen och instruktionen där http-server användes,
+men efter att ha testat det utan framgång så valde vi att köra 
+socket på app-server istället för http-server, vilket fungerade bättre. Det var en av de stora trösklarna
+vi behövde ta oss över för att få det hela att snurra. När väl den biten var på plats så var det rätt straight forward
+att få sakerna att kommunicera. Den var den andra tröskeln att få in så att bägge kunde skriva samtidigt, vilket
+Pontus fixade galant.
+
+GraphQL: 
+
+I detta moment så följde vi instruktionerna som var tillgängliga från repo-sidan. Vi bytte ut de väsentliga
+delarna mot våra egna objekt och byggde upp GraphQL-strukturen utan att implementera funktionaliteten.
+När väl bitarna var på plats och vi kände oss nöjda med hur vår struktur speglade instruktionerna så testade vi
+att skapa en GraphQL-route och ansluta till den. Till en början så kom vi inte åt routen
+i webbläsaren men det löste vi snabbt. Vi spenderade lite tid med att lösa dependencies i package.json men
+även det var relativt enkelt att justera. 
+
+Pontus fixade slutdelen galant.
+
+Tester:
+
+För testerna som vi implementerade så reflekterade vi kort över om det var värt att skapa dem i backend
+eller i frontend. Efter en snabb överläggning så kom vi fram till att backend var mest tilltalande,
+men nu i efterhand så hade det också varit värt att ha en större testdel i frontend, då framför allt för
+socket. 
+
+Testet för GraphQL - Pontus berättar.
+
+Testet för Socket blev fokuserat på att se till att anslutningen fungerade i backend och att 
+rätt information blev skickad, samt att det gick att ansluta till respektive rum.
+En utmaning här var även att få testerna att fungera med en viss timeout då det tar tid att få
+servern att svara, starta, osv. 
+Hade vi haft mer tid och fokus på att skapa fler tester så hade nästa steg varit att implementera tester
+för socket på frontend.
+
