@@ -26,7 +26,9 @@ export default function ShowOne({ item }) {
         // Listen for real-time updates of the document from all clients in the room
         socket.on('doc', (data) => {
             if (data._id === item._id) {
-                setFormData(data);
+                setTimeout(() => {
+                    setFormData(data);
+                }, 5000);
             }
         });
 
