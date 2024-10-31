@@ -5,8 +5,8 @@ import io from "socket.io-client";
 
 let socket;
 // const SERVER_URL = `http://localhost:${port}`;
-const SERVER_URL = `https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
-                +'azurewebsites.net`;
+const SERVER_URL = 'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                +'azurewebsites.net';
 
 export default function ShowOne({ item }) {
     //manage the data in the document
@@ -20,6 +20,8 @@ export default function ShowOne({ item }) {
     useEffect(() => {
         // socket = io("http://localhost:1337");
         socket = io(SERVER_URL);
+        // socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+        //         +'azurewebsites.net');
         // Join the room using the document's _id
         socket.emit('selectedItem', { _id: item._id });
 

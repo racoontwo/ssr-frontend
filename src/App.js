@@ -16,7 +16,7 @@ let socket;
 //socket above
 
 function App() {
-    const [page, setPage] = useState('all');
+    const [page, setPage] = useState('home');
     const [selectedItem, setSelectedItem] = useState(null);
     //useState = Shared? (lägga till en knapp i DOM där man klickar "Shared"
     //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
@@ -31,10 +31,10 @@ function App() {
 
             socket.on('connect', () => {
                 console.log(`You connected with id: ${socket.id}`);
-                // if (selectedItem) {
-                //     socket.emit("selectedItem", selectedItem);
-                //     socket.emit("create", selectedItem["_id"]);
-                // }
+                if (selectedItem) {
+                    socket.emit("selectedItem", selectedItem);
+                    socket.emit("create", selectedItem["_id"]);
+                }
             });
 
             //If a document is being edited, update selectedItem with the edits.
@@ -42,7 +42,7 @@ function App() {
                 // setSelectedItem(data.content, false);
                 if (selectedItem && data._id === selectedItem._id) {
                     selectedItem(data);
-                    // socket.emit("doc", data);
+                    socket.emit("doc", data);
                 }
             });
 
@@ -72,7 +72,7 @@ function App() {
                 </a>
                 <nav>
                     {/* Set buttons to update the "page" state */}
-                    {/* <button onClick={() => setPage('home')}>Home</button> */}
+                    <button onClick={() => setPage('home')}>Home</button>
                     <button onClick={() => setPage('addocs')}>New document</button>
                     <button onClick={() => setPage('all')}>Saved documents</button>
                     {/* <button onClick={() => setPage('showone')}>Show One Doc</button> */}
