@@ -20,8 +20,6 @@ export default function ShowOne({ item }) {
     useEffect(() => {
         // socket = io("http://localhost:1337");
         socket = io(SERVER_URL);
-        // socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
-        //         +'azurewebsites.net');
         // Join the room using the document's _id
         socket.emit('selectedItem', { _id: item._id });
 
@@ -48,12 +46,6 @@ export default function ShowOne({ item }) {
         socket.emit('doc', updatedData);
     };
 
-    // const handleChange = (e) => {
-    //     setFormData({
-    //         ...formData,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
 
     //Handle any submits and sends the data to the server for further handling.
     const handleSubmit = async (e) => {

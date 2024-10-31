@@ -32,10 +32,6 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
                         },
                         body: JSON.stringify({ query: "{ documents { _id, title, content } }" }),
                     },);
-                // const response = await fetch(
-                //     'https://jsramverk-editor-olrs23-g3bthketdnh3bag4.'
-                //     +'northeurope-01.azurewebsites.net/posts/json',
-                // );
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

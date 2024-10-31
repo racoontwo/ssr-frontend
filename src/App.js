@@ -1,5 +1,4 @@
-// import logo from './logo.svg';
-// import './App.css';
+
 import './css/style.css';
 import React, { useState, useEffect } from 'react';
 
@@ -18,9 +17,6 @@ let socket;
 function App() {
     const [page, setPage] = useState('home');
     const [selectedItem, setSelectedItem] = useState(null);
-    //useState = Shared? (lägga till en knapp i DOM där man klickar "Shared"
-    //som gör att man ändrar useState till 'shared' och då kopplar man upp sig
-    //mot socket och gör att man kan skriva samtidigt)
 
     //If socket is not defined, establish a websocket connection to the server
     useEffect(() => {
@@ -71,11 +67,9 @@ function App() {
                     <h1>SSR Editor</h1>
                 </a>
                 <nav>
-                    {/* Set buttons to update the "page" state */}
                     <button onClick={() => setPage('home')}>Home</button>
                     <button onClick={() => setPage('addocs')}>New document</button>
                     <button onClick={() => setPage('all')}>Saved documents</button>
-                    {/* <button onClick={() => setPage('showone')}>Show One Doc</button> */}
                 </nav>
             </header>
             <div className="main">
@@ -88,7 +82,7 @@ function App() {
                     {page === 'addocs' && <AddDocs />}
                     {page === 'showone' && <ShowOne item={selectedItem} />}
                 </section>
-                {/* <img src={logo} className="App-logo" alt="logo" /> */}
+
             </div>
             <footer>
                 <a onClick={deleteDatabase}>Delete database</a>
