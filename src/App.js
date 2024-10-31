@@ -77,7 +77,7 @@ function App() {
                     {/* <button onClick={() => setPage('showone')}>Show One Doc</button> */}
                 </nav>
             </header>
-            <div class="main">
+            <div className="main">
                 <section>
                     {/* Conditionally render content based on the value of the "page" state */}
                     {page === 'home' && <Home />}
@@ -90,7 +90,7 @@ function App() {
                 {/* <img src={logo} className="App-logo" alt="logo" /> */}
             </div>
             <footer>
-                <p class="copyright">&copy; Oliver Roosvall & Pontus Karlsson</p>
+                <p className="copyright">&copy; Oliver Roosvall & Pontus Karlsson</p>
             </footer>
         </div>
     );

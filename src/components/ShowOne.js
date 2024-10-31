@@ -4,6 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import io from "socket.io-client";
 
 let socket;
+// const SERVER_URL = `http://localhost:${port}`;
+const SERVER_URL = `https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
+                +'azurewebsites.net`;
 
 export default function ShowOne({ item }) {
     //manage the data in the document
@@ -16,8 +19,7 @@ export default function ShowOne({ item }) {
     //Initialize a websocket connection to the server
     useEffect(() => {
         // socket = io("http://localhost:1337");
-        socket = io('https://jsramverk-editor-olrs23-g3bthketdnh3bag4.northeurope-01.'
-                +'azurewebsites.net');
+        socket = io(SERVER_URL);
         // Join the room using the document's _id
         socket.emit('selectedItem', { _id: item._id });
 
