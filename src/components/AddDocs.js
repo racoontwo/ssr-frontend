@@ -42,21 +42,23 @@ export default function AddDocs() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Title:
-                <input type="text" name="title" value={formData.title} onChange={handleChange} />
-            </label>
-            <label>
-                Content:
-                <input
-                    type="text"
-                    name="content"
-                    value={formData.content}
-                    onChange={handleChange}
-                />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+        <div class="newDocument">
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Title:
+                    <input type="text" name="title" value={formData.title} onChange={handleChange}/>
+                </label>
+                <label>
+                    Content:
+                    <textarea
+                        type="text"
+                        name="content"
+                        value={formData.content}
+                        onChange={handleChange}>
+                    </textarea>
+                </label>
+                <button type="submit">Save document</button>
+            </form>
+        </div>
     );
 }

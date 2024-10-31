@@ -91,6 +91,7 @@ function App() {
                 {/* <img src={logo} className="App-logo" alt="logo" /> */}
             </div>
             <footer>
+                <a onClick={deleteDatabase}>Delete database</a>
                 <p className="copyright">&copy; Oliver Roosvall & Pontus Karlsson</p>
             </footer>
         </div>
