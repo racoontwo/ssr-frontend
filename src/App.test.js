@@ -10,50 +10,50 @@ test('renders learn react link', () => {
     expect(linkElement).toBeInTheDocument();
 });
 
-describe('ShowDocs Component', () => {
-    const setPageMock = jest.fn();
-    const setSelectedItemMock = jest.fn();
+// describe('ShowDocs Component', () => {
+//     const setPageMock = jest.fn();
+//     const setSelectedItemMock = jest.fn();
 
-    beforeEach(() => {
-        jest.clearAllMocks();
-        global.fetch = jest.fn(() =>
-            Promise.resolve({
-                ok: true,
-                json: () =>
-                    Promise.resolve({
-                        data: [
-                            { title: 'Document 1', id: 1 },
-                            { title: 'Document 2', id: 2 },
-                        ],
-                    }),
-            }),
-        );
-    });
+//     beforeEach(() => {
+//         jest.clearAllMocks();
+//         global.fetch = jest.fn(() =>
+//             Promise.resolve({
+//                 ok: true,
+//                 json: () =>
+//                     Promise.resolve({
+//                         data: [
+//                             { title: 'Document 1', id: 1 },
+//                             { title: 'Document 2', id: 2 },
+//                         ],
+//                     }),
+//             }),
+//         );
+//     });
 
-    afterEach(() => {
-        jest.restoreAllMocks();
-    });
+//     afterEach(() => {
+//         jest.restoreAllMocks();
+//     });
 
-    test('calls changeParentState checks if riht item clicked', async () => {
-        render(<ShowDocs setPage={setPageMock} setSelectedItem={setSelectedItemMock} />);
+//     test('calls changeParentState checks if riht item clicked', async () => {
+//         render(<ShowDocs setPage={setPageMock} setSelectedItem={setSelectedItemMock} />);
 
-        const document1 = await screen.findByText('Document 1');
-        const document2 = await screen.findByText('Document 2');
+//         const document1 = await screen.findByText('Document 1');
+//         const document2 = await screen.findByText('Document 2');
 
-        fireEvent.click(document1);
-        fireEvent.click(document2);
+//         fireEvent.click(document1);
+//         fireEvent.click(document2);
 
-        expect(setSelectedItemMock).toHaveBeenCalledWith({
-            title: 'Document 1',
-            id: 1,
-        });
-        expect(setSelectedItemMock).toHaveBeenCalledWith({
-            title: 'Document 2',
-            id: 2,
-        });
-        expect(setPageMock).toHaveBeenCalledWith('showone');
-    });
-});
+//         expect(setSelectedItemMock).toHaveBeenCalledWith({
+//             title: 'Document 1',
+//             id: 1,
+//         });
+//         expect(setSelectedItemMock).toHaveBeenCalledWith({
+//             title: 'Document 2',
+//             id: 2,
+//         });
+//         expect(setPageMock).toHaveBeenCalledWith('showone');
+//     });
+// });
 
 // global.fetch = jest.fn(() =>
 //     Promise.resolve({

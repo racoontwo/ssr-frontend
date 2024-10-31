@@ -7,6 +7,7 @@ import ShowDocs from './components/ShowDocs.js';
 import ShowOne from './components/ShowOne.js';
 import AddDocs from './components/AddDocs.js';
 import Home from './components/Home.js';
+import deleteDatabase from './components/DeleteDb.js';
 
 //possible own component
 import io from "socket.io-client";
