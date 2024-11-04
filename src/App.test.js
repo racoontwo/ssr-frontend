@@ -37,7 +37,7 @@ describe('ShowDocs Component', () => {
     
         render(<ShowDocs setPage={mockSetPage} setSelectedItem={mockSetSelectedItem} />);
     
-        await waitFor(() => screen.getByText(/Sparade dokument/i));
+        await waitFor(() => screen.getByText(/Saved documents/i));
         
         expect(screen.getByText('Test document 1')).toBeInTheDocument();
         expect(screen.getByText('Test document 2')).toBeInTheDocument();
