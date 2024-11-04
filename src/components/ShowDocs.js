@@ -63,7 +63,7 @@ export default function ShowDocs({ setPage, setSelectedItem }) {
 
     return (
         <div className="DocumentList">
-            <h1>Sparade dokument</h1>
+            <h1>Saved documents</h1>
             <ul>
                 {data.data.documents.map((item, index) => (
                     <li key={index}>
